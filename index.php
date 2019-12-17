@@ -1,5 +1,6 @@
 <?php
-$db = mysqli_connect("localhost", "root", "", "subject_support");
+require("./php/login.php");
+validate_login();
 ?>
 <html>
     <head>
