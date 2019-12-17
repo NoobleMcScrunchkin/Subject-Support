@@ -1,0 +1,13 @@
+.layout {
+  background: url('./res/background.jpg') center / cover;
+}
+.layout .mdl-layout__header,
+.layout .mdl-layout__drawer-button {
+  color: white;
+}
+
+.roboto {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-size: 1.5em;
+}
