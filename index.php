@@ -40,13 +40,18 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                          </tr>
                      </thead>
                      <tbody>
-                         <tr>
-                             <td class="mdl-data-table__cell--non-numeric">Aslett, Kieran</td>
-                             <td class="mdl-data-table__cell--non-numeric">Computer Science</td>
-                             <td class="mdl-data-table__cell--non-numeric">Costen, Dave</td>
-                             <td class="mdl-data-table__cell--non-numeric">13 North</td>
-                             <td class="mdl-data-table__cell--non=numeric">
-                                 <span class="roboto">Not Completed</span>
+                     <?php
+                        $users = fetch_students();
+
+                        foreach($users as $user) {
+                            ?>
+                            <tr>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$users["fname"] . ", " . $users["sname"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$users["subject"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric">Teacher Placeholder</td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$users["year"] . " " . $users["house"];?></td>
+                            <td class="mdl-data-table__cell--non=numeric">
+                                 <span class="roboto"><?=$users["completed"] ? "Completed" : "Not Completed";?></span>
                                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                      Mark P1 as Done
                                  </button>
@@ -57,7 +62,9 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                                      Mark all as Done
                                  </button>
                              </td>
-                         </tr>
+                            <?php
+                        }
+                     ?>
                      </tbody>
                  </table>
              </main>
