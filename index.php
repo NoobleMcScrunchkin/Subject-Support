@@ -1,5 +1,7 @@
 <?php
-$db = mysqli_connect("localhost", "root", "", "subject_support");
+require("./php/login.php");
+validate_login();
+
 $day = date('w') - 1;
 $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
 // mysqli_query($db, "INSERT INTO `register` (`Week`, `StudentID`, `Completed`) VALUES ('".$week_start."', '0', '1')");
