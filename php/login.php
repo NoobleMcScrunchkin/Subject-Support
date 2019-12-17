@@ -4,7 +4,7 @@ require("db.php");
 session_start();
 
 function check_login() {
-    return isset($_SESSION["accountId"]);
+    return isset($_SESSION["accountID"]);
 }
 
 function logout() {
@@ -14,23 +14,27 @@ function logout() {
 function login($username, $password) {
     global $db;
 
-    $hash = password_hash(password, PASSWORD_BCRYPT);
-
-    $finduser = $db->prepare("SELECT ID FROM accounts WHERE username=? AND password=?");
-    $finduser->bind_params("ss", $username, $password);
+    $finduser = $db->prepare("SELECT ID, Password FROM accounts WHERE Username=?");
+    $finduser->bind_param("s", $username);
 
     $finduser->execute();
 
-    $finduser->bind_result($id);
+    $finduser->bind_result($id, $passHash);
 
-    if(!$finduser->fetch())
+    if(!$finduser->fetch()) {
+        $finduser->close();
         return false;
+    }
 
-    $_SESSION["accountId"] = $id;
-
-    $finduser->close();
-
-    return true;
+    if (password_verify($password, $passHash)) {
+        $finduser->close();
+        $_SESSION["accountID"] = $id;
+        return true;
+    } else {
+        $finduser->close();
+        return false;
+    }
+    return false;
 }
 
 function validate_login() {

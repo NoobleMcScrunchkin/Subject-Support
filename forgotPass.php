@@ -46,21 +46,14 @@
              <hgroup>
                  <h1><br></h1>
              </hgroup>
-             <form action="./requests/login.php" method="post">
+             <form action="./passEmail.php" method="post">
                  <div class="group">
                      <input type="text" name="username"><span class="highlight"></span><span class="bar"></span>
                      <label>Username</label>
                  </div>
-                 <div class="group">
-                     <input type="password" name="password"><span class="highlight"></span><span class="bar"></span>
-                     <label>Password</label>
-                 </div>
-                 <button type="submit" class="button buttonBlue">Login
+                 <button type="submit" class="button buttonBlue">Send Email
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                  </button>
-                 <footer>
-                     <a href="/forgotPass.php">Forgotten Password?</a>
-                 </footer>
              </form>
              <footer>
                  <img src="./res/logo.png">

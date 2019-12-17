@@ -23,10 +23,8 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                      <span class="mdl-layout-title">Elizabeth College Subject Support</span>
                      <div class="mdl-layout-spacer"></div>
                      <nav class="mdl-navigation">
-                         <a class="mdl-navigation__link" href="">Link</a>
-                         <a class="mdl-navigation__link" href="">Link</a>
-                         <a class="mdl-navigation__link" href="">Link</a>
-                         <a class="mdl-navigation__link" href="">Link</a>
+                         <a class="mdl-navigation__link" href="/passwordChange.php">Change Password</a>
+                         <a class="mdl-navigation__link" href="/requests/logout.php">Logout</a>
                      </nav>
                  </div>
              </header>

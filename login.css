@@ -2,7 +2,7 @@
 
 body {
 	font-family: Helvetica;
-	background: #eee;
+	background: url('./res/background.jpg') center / cover;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -13,9 +13,9 @@ hgroup {
 
 h1, h3 { font-weight: 300; }
 
-h1 { color: #636363; }
+h1 { color: white; }
 
-h3 { color: #4a89dc; }
+h3 { color: white; }
 
 form {
 	width: 380px;

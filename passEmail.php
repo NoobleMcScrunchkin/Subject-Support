@@ -1,3 +1,8 @@
+<?php
+require ("php/passEmail.php");
+session_start();
+emailPass($_POST['username']);
+?>
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
@@ -40,27 +45,48 @@
                      });
 
                  });
+
+                 $(document).ready(function() {
+                  $(window).keydown(function(event){
+                    if(event.keyCode == 13) {
+                      event.preventDefault();
+                      checkPass();
+                      return false;
+                    }
+                  });
+                });
+
+                 function checkPass() {
+                     var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+                     if (document.getElementById("password").value.match(passw) && document.getElementById("password").value == document.getElementById("passConf").value) {
+                         document.getElementById("passForm").submit();
+                     } else {
+                         alert("Password does not match or meet the requirements");
+                     }
+                }
+
              </script>
          </head>
          <body>
              <hgroup>
                  <h1><br></h1>
              </hgroup>
-             <form action="./requests/login.php" method="post">
+             <form id="passForm" action="./requests/passEmail.php" method="post">
                  <div class="group">
-                     <input type="text" name="username"><span class="highlight"></span><span class="bar"></span>
-                     <label>Username</label>
+                     <input type="text" name="code"><span class="highlight"></span><span class="bar"></span>
+                     <label>Code</label>
                  </div>
                  <div class="group">
-                     <input type="password" name="password"><span class="highlight"></span><span class="bar"></span>
-                     <label>Password</label>
+                     <input id="password" type="password" name="newPass"><span class="highlight"></span><span class="bar"></span>
+                     <label>New Password</label>
                  </div>
-                 <button type="submit" class="button buttonBlue">Login
+                 <div class="group">
+                     <input id="passConf" type="password" name="newPassConf"><span class="highlight"></span><span class="bar"></span>
+                     <label>Confirm Password</label>
+                 </div>
+                 <button type="submit" class="button buttonBlue">Change Password
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                  </button>
-                 <footer>
-                     <a href="/forgotPass.php">Forgotten Password?</a>
-                 </footer>
              </form>
              <footer>
                  <img src="./res/logo.png">
