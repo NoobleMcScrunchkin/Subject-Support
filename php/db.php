@@ -4,7 +4,7 @@ $db = mysqli_connect("localhost", "root", "", "subject_support");
 function fetch_students() {
     global $db;
 
-    $fetchusers = $db->prepare("SELECT * FROM students");
+    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Surname`, `Subject`, `Teacher`, `Year`, `House` FROM students");
     $fetchusers->execute();
 
     $res = array();
