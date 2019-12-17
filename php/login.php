@@ -1,24 +1,23 @@
 <?php
-require("./db.php");
+require("db.php");
 
-
-session_start()
+session_start();
 
 function check_login() {
-    return isset($_SESSION["account"]);
+    return isset($_SESSION["accountId"]);
 }
 
 function logout() {
     session_unset();
 }
 
-function login(username, password) {
+function login($username, $password) {
     global $db;
 
     $hash = password_hash(password, PASSWORD_BCRYPT);
 
     $finduser = $db->prepare("SELECT ID FROM accounts WHERE username=? AND password=?");
-    $finduser->bind_params("ss", username, password);
+    $finduser->bind_params("ss", $username, $password);
 
     $finduser->execute();
 
@@ -26,8 +25,8 @@ function login(username, password) {
 
     if(!$finduser->fetch())
         return false;
-    
-    $_SESSION["account"] = $id;
+
+    $_SESSION["accountId"] = $id;
 
     $finduser->close();
 
