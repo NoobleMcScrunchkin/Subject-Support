@@ -9,18 +9,17 @@ function fetch_students() {
 
     $res = array();
 
-    $fetchusers->bind_result($id, $fname, $sname, $subject, $teacherId, $year, $house, $completed);
+    $fetchusers->bind_result($id, $fname, $sname, $subject, $teacherId, $year, $house);
 
     while($fetchusers->fetch()) {
         array_push($res, array(
             "id" => $id,
             "fname" => $fname,
             "sname" => $sname,
-            "subject" => $subject, // didn't put in teacher as a teacher may have multiple subjects
-            "teacher" => $teacherId, // links to teacher db which then has details bout teacher
+            "subject" => $subject,
+            "teacher" => $teacherId,
             "year" => $year,
             "house" => $house,
-            "completed" => $completed
         ));
     }
 

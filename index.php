@@ -51,7 +51,7 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                             <td class="mdl-data-table__cell--non-numeric">Teacher Placeholder</td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$users["year"] . " " . $users["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
-                                 <span class="roboto"><?=$users["completed"] ? "Completed" : "Not Completed";?></span>
+                                 <span class="roboto">Not Completed (Placeholder)</span>
                                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                      Mark P1 as Done
                                  </button>
