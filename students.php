@@ -32,13 +32,19 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                  </div>
              </header>
              <main class="mdl-layout__content">
+                 <form style="display: inline-block; float: right; margin-right: 8px;" action="./editStudent.php" method="post">
+                     <input type="hidden" name="ID" value="NaN">
+                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                         Add
+                     </button>
+                </form>
                  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
                      <thead>
                          <tr>
                              <th class="mdl-data-table__cell--non-numeric">Name</th>
                              <th class="mdl-data-table__cell--non-numeric">Subject</th>
                              <th class="mdl-data-table__cell--non-numeric">Tutor Group</th>
-                             <th class="mdl-data-table__cell--non-numeric">Completion</th>
+                             <th class="mdl-data-table__cell--non-numeric">Remove</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -52,16 +58,18 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["subject"];?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
-                                 <span class="roboto" style="float: left;">Not Completed (Placeholder)</span>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                     Mark P1 as Done
-                                 </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                     Mark P2 as Done
-                                 </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                     Mark all as Done
-                                 </button>
+                                 <form style="display: inline-block" action="./editStudent.php" method="post">
+                                     <input type="hidden" name="ID" value="<?=$user['id']?>">
+                                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                         Edit
+                                     </button>
+                                </form>
+                                 <form style="display: inline-block" action="./requests/removeStudent.php" method="post">
+                                     <input type="hidden" name="ID" value="<?=$user['id']?>">
+                                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                         Remove
+                                     </button>
+                                </form>
                              </td>
                             <?php
                         }

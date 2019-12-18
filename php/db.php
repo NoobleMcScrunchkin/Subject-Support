@@ -4,12 +4,12 @@ $db = mysqli_connect("localhost", "root", "", "subject_support");
 function fetch_students() {
     global $db;
 
-    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Surname`, `Subject`, `Teacher`, `Year`, `House` FROM students");
+    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Surname`, `Subject`, `Year`, `House` FROM students");
     $fetchusers->execute();
 
     $res = array();
 
-    $fetchusers->bind_result($id, $fname, $sname, $subject, $teacherId, $year, $house);
+    $fetchusers->bind_result($id, $fname, $sname, $subject, $year, $house);
 
     while($fetchusers->fetch()) {
         array_push($res, array(
@@ -17,7 +17,6 @@ function fetch_students() {
             "fname" => $fname,
             "sname" => $sname,
             "subject" => $subject,
-            "teacher" => $teacherId,
             "year" => $year,
             "house" => $house,
         ));
