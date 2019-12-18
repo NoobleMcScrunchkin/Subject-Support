@@ -11,6 +11,6 @@ function complete_period(studentid, period, noreload) {
         }
         document.location.reload(true);
     }
-    
+
     req.send(data);
 }

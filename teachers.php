@@ -1,10 +1,6 @@
 <?php
 require("./php/login.php");
 validate_login();
-
-$day = date('w') - 1;
-$week_start = date('Y-m-d', strtotime('-'.$day.' days'));
-// mysqli_query($db, "INSERT INTO `register` (`Week`, `StudentID`, `Completed`) VALUES ('".$week_start."', '0', '1')");
  ?>
 <html>
     <head>
@@ -15,7 +11,6 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
         <script src="./matDesign/material.min.js"></script>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <script src="./js/index.js"></script>
     </head>
     <body>
          <div class="layout mdl-layout mdl-js-layout">
@@ -33,13 +28,17 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                  </div>
              </header>
              <main class="mdl-layout__content">
+                 <form style="display: inline-block; float: right; margin-right: 8px;" action="./editStudent.php" method="post">
+                     <input type="hidden" name="ID" value="NaN">
+                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                         Add
+                     </button>
+                </form>
                  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
                      <thead>
                          <tr>
                              <th class="mdl-data-table__cell--non-numeric">Name</th>
-                             <th class="mdl-data-table__cell--non-numeric">Subject</th>
-                             <th class="mdl-data-table__cell--non-numeric">Tutor Group</th>
-                             <th class="mdl-data-table__cell--non-numeric">Completion</th>
+                             <th class="mdl-data-table__cell--non-numeric">Remove</th>
                          </tr>
                      </thead>
                      <tbody>
@@ -47,36 +46,24 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                         $users = fetch_students();
 
                         foreach($users as $user) {
-                            $completed = fetch_completed($user["id"], $week_start);
-                            $completedStr = "";
-                            if($completed[1] && !$completed[2]) {
-                                $completedStr = "P1 Completed";
-                            }
-                            elseif(!$completed[1] && $completed[2]) {
-                                $completedStr = "P2 Completed";
-                            }
-                            elseif(!$completed[1] && !$completed[2]) {
-                                $completedStr = "No Periods Completed";
-                            }
-                            else {
-                                $completedStr = "All Periods Completed";
-                            }
                             ?>
                             <tr>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["subject"];?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
-                                 <span class="roboto" style="float: left;"><?=$completedStr?></span>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1);'>
-                                     Mark P1 as <?=$completed[1] ? "To Do" : "Done";?>
-                                 </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 2);'>
-                                     Mark P2 as <?=$completed[2] ? "To Do" : "Done";?>
-                                 </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1, true);complete_period(<?=$user["id"]?>, 2);'>
-                                     Mark all as <?=$completed[1] && $completed[2] ? "To Do" : "Done";?>
-                                 </button>
+                                 <form style="display: inline-block" action="./editStudent.php" method="post">
+                                     <input type="hidden" name="ID" value="<?=$user['id']?>">
+                                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                         Edit
+                                     </button>
+                                </form>
+                                 <form style="display: inline-block" action="./requests/removeStudent.php" method="post">
+                                     <input type="hidden" name="ID" value="<?=$user['id']?>">
+                                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                         Remove
+                                     </button>
+                                </form>
                              </td>
                             <?php
                         }

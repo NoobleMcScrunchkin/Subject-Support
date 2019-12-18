@@ -1,4 +1,4 @@
-<?
+<?php
 require("../php/login.php");
 validate_login();
 
@@ -21,12 +21,12 @@ if(!is_numeric($studentIdStr) || !is_numeric($periodStr)) {
 }
 
 $studentId = intval($studentIdStr);
-$period = intval($periodStr)
+$period = intval($periodStr);
 
 $day = date('w') - 1;
 $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
 
-$setComplete = $db->prepare("INSERT INTO completed(`StudentID`, `Week`, `Period` VALUES (?, ?, ?)");
+$setComplete = $db->prepare("INSERT INTO completed(`StudentID`, `Week`, `Period`) VALUES (?, ?, ?)");
 $setComplete->bind_param("isi", $studentId, $week_start, $period);
 
 $setComplete->execute();
