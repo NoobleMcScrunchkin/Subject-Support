@@ -23,6 +23,27 @@ function fetch_students() {
         ));
     }
 
+    $fetchusers->close();
+
     return $res;
+}
+
+function find_account_name($id) {
+    global $db;
+
+    $finduser = $db->prepare("SELECT `First Name`, `Last Name` FROM accounts WHERE ID=?");
+    $finduser->bind_param("i", $id);
+
+    $finduser->execute();
+    $finduser->bind_result($fname, $sname);
+
+    if($finduser->fetch()) {
+        $finduser->close();
+        return $sname . ", " . $fname;
+    }
+    else {
+        $finduser->close();
+        return false;
+    }
 }
 ?>

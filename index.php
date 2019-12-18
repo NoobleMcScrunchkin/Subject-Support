@@ -44,11 +44,12 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                         $users = fetch_students();
 
                         foreach($users as $user) {
+                            $teacher = find_account_name($user["teacher"]);
                             ?>
                             <tr>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["subject"];?></td>
-                            <td class="mdl-data-table__cell--non-numeric">Teacher Placeholder</td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$teacher?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
                                  <span class="roboto" style="float: left;">Not Completed (Placeholder)</span>
