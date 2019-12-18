@@ -15,6 +15,7 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
         <script src="./matDesign/material.min.js"></script>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="./js/index.js"></script>
     </head>
     <body>
          <div class="layout mdl-layout mdl-js-layout">
@@ -44,23 +45,32 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                         $users = fetch_students();
 
                         foreach($users as $user) {
-                            $teacher = find_account_name($user["teacher"]);
+                            $completed = find_completed($user["id"], $week_start);
+                            $completedStr = "";
+                            if($completed[1] && !completed[2]) {
+                                $completedStr = "P1 Completed";
+                            }
+                            elseif(!$completed[1] && $completed[2]) {
+                                $completedStr = "P2 Completed";
+                            }
+                            else {
+                                $completedStr = "All Periods Completed";
+                            }
                             ?>
                             <tr>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["subject"];?></td>
-                            <td class="mdl-data-table__cell--non-numeric"><?=$teacher?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
-                                 <span class="roboto" style="float: left;">Not Completed (Placeholder)</span>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                     Mark P1 as Done
+                                 <span class="roboto" style="float: left;"><?=$completedStr?></span>
+                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1);'>
+                                     Mark P1 as <?=$completed[1] ? "To Do" : "Done";?>
                                  </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                     Mark P2 as Done
+                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> onclick='complete_period(<?=$user["id"]?>, 2);'
+                                     Mark P2 as <?=$completed[2] ? "To Do" : "Done";?>
                                  </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                                     Mark all as Done
+                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1, true);complete_period(<?=$user["id"]?>, 2);'>
+                                     Mark all as <?=$completed[1] && $completed[2] ? "To Do" : "Done";?>
                                  </button>
                              </td>
                             <?php

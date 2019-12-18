@@ -4,7 +4,7 @@ $db = mysqli_connect("localhost", "root", "", "subject_support");
 function fetch_students() {
     global $db;
 
-    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Surname`, `Subject`, `Teacher`, `Year`, `House` FROM students");
+    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Surname`, `Subject`, `Year`, `House` FROM students");
     $fetchusers->execute();
 
     $res = array();
@@ -17,7 +17,6 @@ function fetch_students() {
             "fname" => $fname,
             "sname" => $sname,
             "subject" => $subject,
-            "teacher" => $teacherId,
             "year" => $year,
             "house" => $house,
         ));
@@ -45,5 +44,24 @@ function find_account_name($id) {
         $finduser->close();
         return false;
     }
+}
+
+function fetch_completed($studentID, $date) {
+    global $db;
+
+    $fetchCompleted = $db->prepare("SELECT `Period` FROM completed WHERE `StudentID`=? AND `Week`=?");
+    $fetchCompleted->bind_param("is", $studentID, $date);
+    
+    $fetchCompleted->execute();
+
+    $fetchCompleted->bind_result($period);
+
+    $completed = array(false, false, false);
+
+    while($fetchCompleted->fetch()) {
+        $completed[$period] = true;
+    }
+
+    return $completed;
 }
 ?>
