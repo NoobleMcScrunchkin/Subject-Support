@@ -62,6 +62,8 @@ function fetch_completed($studentID, $date) {
         $completed[$period] = true;
     }
 
+    $fetchCompleted->close();
+
     return $completed;
 }
 ?>

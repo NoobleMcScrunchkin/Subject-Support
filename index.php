@@ -55,6 +55,9 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                             elseif(!$completed[1] && $completed[2]) {
                                 $completedStr = "P2 Completed";
                             }
+                            elseif(!$completed[1] && !$completed[2]) {
+                                $completedStr = "No Periods Completed";
+                            }
                             else {
                                 $completedStr = "All Periods Completed";
                             }
