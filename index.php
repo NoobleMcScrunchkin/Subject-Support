@@ -47,9 +47,7 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                         $users = fetch_students();
 
                         foreach($users as $user) {
-<<<<<<< HEAD
-=======
-                            $completed = find_completed($user["id"], $week_start);
+                            $completed = fetch_completed($user["id"], $week_start);
                             $completedStr = "";
                             if($completed[1] && !completed[2]) {
                                 $completedStr = "P1 Completed";
@@ -60,7 +58,6 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                             else {
                                 $completedStr = "All Periods Completed";
                             }
->>>>>>> 8b222741bd900b9be488a926b253ebab4066d954
                             ?>
                             <tr>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
@@ -71,7 +68,7 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1);'>
                                      Mark P1 as <?=$completed[1] ? "To Do" : "Done";?>
                                  </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> onclick='complete_period(<?=$user["id"]?>, 2);'
+                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 2);'>
                                      Mark P2 as <?=$completed[2] ? "To Do" : "Done";?>
                                  </button>
                                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1, true);complete_period(<?=$user["id"]?>, 2);'>
