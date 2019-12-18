@@ -28,7 +28,7 @@ validate_login();
                  </div>
              </header>
              <main class="mdl-layout__content">
-                 <form style="display: inline-block; float: right; margin-right: 8px;" action="./editStudent.php" method="post">
+                 <form style="display: inline-block; float: right; margin-right: 8px;" action="./editTeacher.php" method="post">
                      <input type="hidden" name="ID" value="NaN">
                      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                          Add
@@ -38,27 +38,30 @@ validate_login();
                      <thead>
                          <tr>
                              <th class="mdl-data-table__cell--non-numeric">Name</th>
+                             <th class="mdl-data-table__cell--non-numeric">Username</th>
+                             <th class="mdl-data-table__cell--non-numeric">Email</th>
                              <th class="mdl-data-table__cell--non-numeric">Remove</th>
                          </tr>
                      </thead>
                      <tbody>
                      <?php
-                        $users = fetch_students();
+                        $users = fetch_accounts();
 
                         foreach($users as $user) {
+                            if ($user["id"] != $_SESSION['accountID']) {
                             ?>
                             <tr>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
-                            <td class="mdl-data-table__cell--non-numeric"><?=$user["subject"];?></td>
-                            <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$user["username"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$user["email"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
-                                 <form style="display: inline-block" action="./editStudent.php" method="post">
+                                 <form style="display: inline-block" action="./editTeacher.php" method="post">
                                      <input type="hidden" name="ID" value="<?=$user['id']?>">
                                      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                          Edit
                                      </button>
                                 </form>
-                                 <form style="display: inline-block" action="./requests/removeStudent.php" method="post">
+                                 <form style="display: inline-block" action="./requests/removeTeacher.php" method="post">
                                      <input type="hidden" name="ID" value="<?=$user['id']?>">
                                      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                          Remove
@@ -66,6 +69,7 @@ validate_login();
                                 </form>
                              </td>
                             <?php
+                            }
                         }
                      ?>
                      </tbody>

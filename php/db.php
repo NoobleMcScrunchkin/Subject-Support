@@ -26,6 +26,30 @@ function fetch_students() {
 
     return $res;
 }
+function fetch_accounts() {
+    global $db;
+
+    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Last Name`, `Username`, `Email` FROM accounts");
+    $fetchusers->execute();
+
+    $res = array();
+
+    $fetchusers->bind_result($id, $fname, $sname, $username, $email);
+
+    while($fetchusers->fetch()) {
+        array_push($res, array(
+            "id" => $id,
+            "fname" => $fname,
+            "sname" => $sname,
+            "username" => $username,
+            "email" => $email
+        ));
+    }
+
+    $fetchusers->close();
+
+    return $res;
+}
 
 function find_account_name($id) {
     global $db;
@@ -51,7 +75,7 @@ function fetch_completed($studentID, $date) {
 
     $fetchCompleted = $db->prepare("SELECT `Period` FROM completed WHERE `StudentID`=? AND `Week`=?");
     $fetchCompleted->bind_param("is", $studentID, $date);
-    
+
     $fetchCompleted->execute();
 
     $fetchCompleted->bind_result($period);
