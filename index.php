@@ -46,12 +46,12 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                         foreach($users as $user) {
                             ?>
                             <tr>
-                            <td class="mdl-data-table__cell--non-numeric"><?=$users["fname"] . ", " . $users["sname"];?></td>
-                            <td class="mdl-data-table__cell--non-numeric"><?=$users["subject"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$user["subject"];?></td>
                             <td class="mdl-data-table__cell--non-numeric">Teacher Placeholder</td>
-                            <td class="mdl-data-table__cell--non-numeric"><?=$users["year"] . " " . $users["house"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
-                                 <span class="roboto">Not Completed (Placeholder)</span>
+                                 <span class="roboto" style="float: left;">Not Completed (Placeholder)</span>
                                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                      Mark P1 as Done
                                  </button>
