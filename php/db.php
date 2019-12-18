@@ -45,4 +45,23 @@ function find_account_name($id) {
         return false;
     }
 }
+
+function fetch_completed($studentID, $date) {
+    global $db;
+
+    $fetchCompleted = $db->prepare("SELECT `Period` FROM completed WHERE `StudentID`=? AND `Week`=?");
+    $fetchCompleted->bind_param("is", $studentID, $date);
+    
+    $fetchCompleted->execute();
+
+    $fetchCompleted->bind_result($period);
+
+    $completed = array(false, false, false);
+
+    while($fetchCompleted->fetch()) {
+        $completed[$period] = true;
+    }
+
+    return $completed;
+}
 ?>
