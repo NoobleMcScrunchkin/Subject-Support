@@ -2,6 +2,13 @@
 require ("php/login.php");
 validate_login();
 
+$user = fetch_account($_SESSION["accountID"]);
+
+if (!$user['priv']) {
+    header("HTTP/1.0 403 Forbidden");
+    die();
+}
+
 if ($_POST["ID"] != "NaN") {
     $finduser = $db->prepare("SELECT `First Name`, `Surname`, `Subject`, `Year`, `House` FROM students WHERE ID=?");
     $finduser->bind_param("i", $_POST["ID"]);
@@ -91,7 +98,7 @@ if ($_POST["ID"] != "NaN") {
                      <input type="text" name="house" value="<?php if ($_POST['ID'] != "NaN") { echo $house; } ?>"><span class="highlight"></span><span class="bar"></span>
                      <label>House</label>
                  </div>
-                 <button type="submit" class="button buttonBlue">Login
+                 <button type="submit" class="button buttonBlue">Submit
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                  </button>
              </form>

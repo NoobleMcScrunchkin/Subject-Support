@@ -29,12 +29,12 @@ function fetch_students() {
 function fetch_accounts() {
     global $db;
 
-    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Last Name`, `Username`, `Email` FROM accounts");
+    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Last Name`, `Username`, `Email`, `Privileged` FROM accounts");
     $fetchusers->execute();
 
     $res = array();
 
-    $fetchusers->bind_result($id, $fname, $sname, $username, $email);
+    $fetchusers->bind_result($id, $fname, $sname, $username, $email, $priv);
 
     while($fetchusers->fetch()) {
         array_push($res, array(
@@ -42,13 +42,42 @@ function fetch_accounts() {
             "fname" => $fname,
             "sname" => $sname,
             "username" => $username,
-            "email" => $email
+            "email" => $email,
+            "priv" => $priv
         ));
     }
 
     $fetchusers->close();
 
     return $res;
+}
+
+function fetch_account($id) {
+    global $db;
+
+    $fetchusers = $db->prepare("SELECT `First Name`, `Last Name`, `Username`, `Email`, `Privileged` FROM accounts WHERE ID=?");
+    $fetchusers->bind_param("i", $id);
+    $fetchusers->execute();
+
+    $res = array();
+
+    $fetchusers->bind_result($fname, $sname, $username, $email, $priv);
+
+    if($fetchusers->fetch()) {
+        $fetchusers->close();
+        return array(
+            "id" => $id,
+            "fname" => $fname,
+            "sname" => $sname,
+            "username" => $username,
+            "email" => $email,
+            "priv" => $priv
+        );
+    }
+
+    $fetchusers->close();
+
+    return false;
 }
 
 function find_account_name($id) {

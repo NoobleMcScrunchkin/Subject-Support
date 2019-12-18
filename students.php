@@ -2,6 +2,7 @@
 require("./php/login.php");
 validate_login();
 
+$user = fetch_account($_SESSION['accountID']);
 $day = date('w') - 1;
 $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
 // mysqli_query($db, "INSERT INTO `register` (`Week`, `StudentID`, `Completed`) VALUES ('".$week_start."', '0', '1')");
@@ -24,8 +25,13 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                      <div class="mdl-layout-spacer"></div>
                      <nav class="mdl-navigation">
                          <a class="mdl-navigation__link" href="/">Home</a>
-                         <a class="mdl-navigation__link" href="/students">Add/Remove Student</a>
-                         <a class="mdl-navigation__link" href="/teachers">Add/Remove Teacher</a>
+                         <?php
+                         if ($user['priv']) { ?>
+                             <a class="mdl-navigation__link" href="/students">Add/Remove Student</a>
+                             <a class="mdl-navigation__link" href="/teachers">Add/Remove Teacher</a>
+                         <?php
+                        }
+                        ?>
                          <a class="mdl-navigation__link" href="/passwordChange">Change Password</a>
                          <a class="mdl-navigation__link" href="/requests/logout">Logout</a>
                      </nav>

@@ -2,6 +2,13 @@
 require ("php/login.php");
 validate_login();
 
+$user = fetch_account($_SESSION["accountID"]);
+
+if (!$user['priv']) {
+    header("HTTP/1.0 403 Forbidden");
+    die();
+}
+
 if ($_POST["ID"] != "NaN") {
     $finduser = $db->prepare("SELECT `First Name`, `Last Name`, `Username`, `Email` FROM accounts WHERE ID=?");
     $finduser->bind_param("i", $_POST["ID"]);
@@ -16,6 +23,11 @@ if ($_POST["ID"] != "NaN") {
         <meta charset="utf-8">
         <title>Subject Support</title>
         <link rel="stylesheet" href="login.css"></link>
+        <link href="./index.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="./matDesign/material.min.css">
+        <script src="./matDesign/material.min.js"></script>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
             $(window, document, undefined).ready(function() {
@@ -87,7 +99,7 @@ if ($_POST["ID"] != "NaN") {
                      <input type="text" name="email" value="<?php if ($_POST['ID'] != "NaN") { echo $email; } ?>"><span class="highlight"></span><span class="bar"></span>
                      <label>Email</label>
                  </div>
-                 <button type="submit" class="button buttonBlue">Login
+                 <button type="submit" class="button buttonBlue">Submit
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                  </button>
              </form>
