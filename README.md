@@ -1,4 +1,5 @@
 # Subject Support
+![Homepage](/gitRes/homepage.png)
 ## Homepage
 The homepage is the primary page that the user will interact with, where students doing subject support will be listed and teachers will be able to mark each period as done, or both, and relay which ones have been completed.
 
