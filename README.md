@@ -1,4 +1,4 @@
-# Subject Support
+# EC Subject Support System
 
 ## Homepage
 ![Homepage](gitRes/index.png)
