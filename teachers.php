@@ -55,7 +55,6 @@ $user = fetch_account($_SESSION['accountID']);
                         $users = fetch_accounts();
 
                         foreach($users as $user) {
-                            if ($user["id"] != $_SESSION['accountID']) {
                             ?>
                             <tr>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
@@ -68,15 +67,16 @@ $user = fetch_account($_SESSION['accountID']);
                                          Edit
                                      </button>
                                 </form>
+                                <?php if ($user["id"] != $_SESSION['accountID']) { ?>
                                  <form style="display: inline-block" action="./requests/removeTeacher.php" method="post">
                                      <input type="hidden" name="ID" value="<?=$user['id']?>">
                                      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                          Remove
                                      </button>
                                 </form>
+                            <?php } ?>
                              </td>
                             <?php
-                            }
                         }
                      ?>
                      </tbody>
