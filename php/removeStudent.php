@@ -1,7 +1,4 @@
 <?php
-require ("db.php");
-session_start();
-
 function removeStudent($id) {
     global $db;
 

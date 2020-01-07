@@ -2,7 +2,8 @@
 
 body {
 	font-family: Helvetica;
-	background: url('./res/background.jpg') center / cover;
+	/* background: url('./res/background.jpg') center / cover; */
+	background: #ccc;
   -webkit-font-smoothing: antialiased;
 }
 

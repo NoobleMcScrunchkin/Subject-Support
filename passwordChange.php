@@ -53,7 +53,7 @@
 
                  function checkPass() {
                      var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-                     if (document.getElementById("password").value.match(passw) && document.getElementById("password").value == document.getElementById("passConf").value && document.getElementById("currentPass").value.match(passw)) {
+                     if (document.getElementById("password").value.match(passw) && document.getElementById("password").value == document.getElementById("passConf").value) {
                          document.getElementById("passForm").submit();
                      } else {
                          alert("Password does not match or meet the requirements");
@@ -67,8 +67,8 @@
              </hgroup>
              <form id="passForm" action="./requests/passChange.php" method="post">
                  <div class="group">
-                     <input id="currentPass" type="password" name="currentPass"><span class="highlight"></span><span class="bar"></span>
-                     <label>Current Password</label>
+                     <input id="currentPass" onclick="if (<?=(isset($_GET['incorrect']) && $_GET['incorrect'] == 1)?> ) { document.getElementById('currentLabel').removeAttribute('style'); }" type="password" name="currentPass"><span class="highlight"></span><span class="bar"></span>
+                     <label id="currentLabel" <?php if (isset($_GET['incorrect']) && $_GET['incorrect'] == 1) { echo 'style="color: red"';} ?> >Current Password</label>
                  </div>
                  <div class="group">
                      <input id="password" type="password" name="newPass"><span class="highlight"></span><span class="bar"></span>

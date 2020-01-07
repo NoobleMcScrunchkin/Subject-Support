@@ -1,9 +1,9 @@
 .layout {
-  background: url('./res/background.jpg') center / cover;
+    background: url('./res/background.jpg') center / cover;
 }
 .layout .mdl-layout__header,
 .layout .mdl-layout__drawer-button {
-  color: white;
+    color: white;
 }
 
 .roboto {

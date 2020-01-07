@@ -1,5 +1,4 @@
 <?php
-require ('db.php');
 
 function emailPass($username) {
     require ("./mail/class.phpmailer.php");

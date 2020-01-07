@@ -1,8 +1,4 @@
 <?php
-require("db.php");
-
-session_start();
-
 function changePassword($current, $new, $conf) {
     if ($new == $conf) {
         global $db;

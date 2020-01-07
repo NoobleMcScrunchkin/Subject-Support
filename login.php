@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <title>Subject Support</title>
-        <link rel="stylesheet" href="login.css"></link>
+        <link rel="stylesheet" href="./login.css"></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
             $(window, document, undefined).ready(function() {
@@ -40,6 +40,16 @@
                      });
 
                  });
+                 
+                 window.onload = function() {
+                     $('input').each(function() {
+                         var $this = $(this);
+                         if ($this.val())
+                         $this.addClass('used');
+                         else
+                         $this.removeClass('used');
+                    });
+                }
              </script>
          </head>
          <body>

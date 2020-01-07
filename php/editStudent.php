@@ -1,6 +1,4 @@
 <?php
-require ("db.php");
-
 function editStudent($id, $fname, $sname, $subject, $year, $house) {
     global $db;
 

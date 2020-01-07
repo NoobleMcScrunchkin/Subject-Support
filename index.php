@@ -24,16 +24,16 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                      <span class="mdl-layout-title">Elizabeth College Subject Support</span>
                      <div class="mdl-layout-spacer"></div>
                      <nav class="mdl-navigation">
-                         <a class="mdl-navigation__link" href="/">Home</a>
+                         <a class="mdl-navigation__link" href="./">Home</a>
                          <?php
                          if ($user['priv']) { ?>
-                             <a class="mdl-navigation__link" href="/students">Add/Remove Student</a>
-                             <a class="mdl-navigation__link" href="/teachers">Add/Remove Teacher</a>
+                             <a class="mdl-navigation__link" href="./students">Add/Remove Student</a>
+                             <a class="mdl-navigation__link" href="./teachers">Add/Remove Teacher</a>
                          <?php
                         }
                         ?>
-                         <a class="mdl-navigation__link" href="/passwordChange">Change Password</a>
-                         <a class="mdl-navigation__link" href="/requests/logout">Logout</a>
+                         <a class="mdl-navigation__link" href="./passwordChange">Change Password</a>
+                         <a class="mdl-navigation__link" href="./requests/logout">Logout</a>
                      </nav>
                  </div>
              </header>

@@ -1,11 +1,9 @@
 <?php
-require ("db.php");
-
 function editTeacher($id, $fname, $sname, $username, $email) {
     global $db;
 
     if ($id == "NaN") {
-        $addStudent = $db->prepare("INSERT INTO accounts(`First Name`, `Last Name`, `Username`, `Password`, `Email`) VALUES (?, ?, ?, ?, ?)");
+        $addStudent = $db->prepare("INSERT INTO accounts(`First Name`, `Last Name`, `Username`, `Password`, `Email`, `Privileged`) VALUES (?, ?, ?, ?, ?, 0)");
         $password = password_hash("Password01", PASSWORD_BCRYPT);
         $addStudent->bind_param("sssss", $fname, $sname, $username, $password, $email);
         $addStudent->execute();
