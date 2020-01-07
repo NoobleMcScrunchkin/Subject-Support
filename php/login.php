@@ -39,7 +39,7 @@ function login($username, $password) {
 
 function validate_login() {
     if(!check_login()) {
-        header("Location: ./login.php");
+        header("Location: ./login");
         die();
     }
 }
