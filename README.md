@@ -37,6 +37,6 @@ This is a page where accounts can be added for the use of teachers, by default a
 ![Homepage](gitRes/index.png)
 ![Students](gitRes/students.png)
 ![Teachers](gitRes/teachers.png)
-![Password Change](gitRes/passChange.png)
+![Password Change](gitRes/changePass.png)
 ![Edit Student](gitRes/editStudent.png)
 ![Edit Teacher](gitRes/editTeacher.png)
