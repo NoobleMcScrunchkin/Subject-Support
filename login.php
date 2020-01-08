@@ -40,14 +40,15 @@
                      });
 
                  });
-                 
+
                  window.onload = function() {
                      $('input').each(function() {
                          var $this = $(this);
-                         if ($this.val())
-                         $this.addClass('used');
-                         else
-                         $this.removeClass('used');
+                         if ($this.is(":-webkit-autofill")) {
+                             $this.addClass('used');
+                         } else {
+                             $this.removeClass('used');
+                         }
                     });
                 }
              </script>
@@ -69,7 +70,7 @@
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                  </button>
                  <footer>
-                     <a href="/forgotPass.php">Forgotten Password?</a>
+                     <a href="./forgotPass.php">Forgotten Password?</a>
                  </footer>
              </form>
              <footer>

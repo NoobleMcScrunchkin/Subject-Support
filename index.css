@@ -1,5 +1,6 @@
 .layout {
-    background: url('./res/background.jpg') center / cover;
+    /* background: url('./res/background.jpg') center / cover; */
+    background: #ccc;
 }
 .layout .mdl-layout__header,
 .layout .mdl-layout__drawer-button {
@@ -10,4 +11,13 @@
     font-family: 'Open Sans';
     font-weight: bold;
     font-size: 1.5em;
+}
+
+.mdl-layout__header {
+    background-color: #333 !important;
+    margin-bottom: 12px !important;
+}
+
+.mdl-navigation .mdl-navigation__link:hover {
+   background-color: #222;
 }
