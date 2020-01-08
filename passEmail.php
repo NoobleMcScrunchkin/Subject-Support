@@ -1,6 +1,6 @@
 <?php
 require ("php/passEmail.php");
-session_start();
+require ("php/login.php");
 emailPass($_POST['username']);
 ?>
 <html lang="en" dir="ltr">
