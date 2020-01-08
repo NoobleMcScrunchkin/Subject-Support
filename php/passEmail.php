@@ -53,10 +53,11 @@ function emailPass($username) {
 function changeForgotPass($code, $newPass, $passConf) {
     global $db;
 
-    $getEmail = $db->prepare("SELECT accountID FROM forgotPass WHERE Code=?");
+    $getEmail = $db->prepare("SELECT AccountID FROM forgotPass WHERE Code=?");
     $getEmail->bind_param("s", $code);
     $getEmail->execute();
     $getEmail->bind_result($id);
+    echo $id;
 
     if(!$getEmail->fetch()) {
         $getEmail->close();
@@ -70,16 +71,16 @@ function changeForgotPass($code, $newPass, $passConf) {
 
     $getEmail->close();
 
+    $del = $db->prepare("DELETE FROM forgotPass WHERE accountID=?");
+    $del->bind_param("i", $id);
+    $del->execute();
+    $del->close();
+
     $hash = password_hash($newPass, PASSWORD_BCRYPT);
     $updatePass = $db->prepare("UPDATE `accounts` SET `Password` = ? WHERE `accounts`.`ID` = ?");
     $updatePass->bind_param("ss", $hash, $id);
     $updatePass->execute();
     $updatePass->close();
-
-    $delForgot = $db->prepare("DELETE FROM forgotPass WHERE accountID=?");
-    $delForgot->bind_param("s", $id);
-    $delForgot->execute();
-    $delForgot->close();
 
     return true;
 
