@@ -13,10 +13,9 @@ This page is very similar to the homepage but instead of marking periods as comp
 This is a page where accounts can be added for the use of teachers, by default all users will not be priviledged. There are also options for editing and removing existing accounts. The current account cannot be removed. This page is only accessible by privilledged users.
 
 ## Other Features
+* User Privileges (Allow Add/Removal of Students/Teachers)
 * Password resets by emailing a code
 * Password changing
-* Login
-* Logout
 
 ## Requirements
 * Apache
