@@ -118,6 +118,9 @@ DELIMITER $$
 DROP EVENT `Truncate forgotpass`$$
 CREATE DEFINER=`root`@`localhost` EVENT `Truncate forgotpass` ON SCHEDULE EVERY 1 DAY STARTS '2020-01-10 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Remove codes at end of day' DO TRUNCATE forgotpass$$
 
+DROP EVENT `Remove month old records`$$
+CREATE DEFINER=`root`@`localhost` EVENT `Remove month old records` ON SCHEDULE EVERY 1 WEEK STARTS '2020-01-11 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Removes student completed records that are older than one month' DO DELETE FROM completed WHERE Week < DATE_SUB(NOW(), INTERVAL 1 MONTH)$$
+
 DELIMITER ;
 COMMIT;
 
