@@ -68,15 +68,15 @@
              <form id="passForm" action="./requests/passChange.php" method="post">
                  <div class="group">
                      <input id="currentPass" onclick="if (<?=(isset($_GET['incorrect']) && $_GET['incorrect'] == 1)?> ) { document.getElementById('currentLabel').removeAttribute('style'); }" type="password" name="currentPass"><span class="highlight"></span><span class="bar"></span>
-                     <label id="currentLabel" <?php if (isset($_GET['incorrect']) && $_GET['incorrect'] == 1) { echo 'style="color: red"';} ?> >Current Password</label>
+                     <label class="text" id="currentLabel" <?php if (isset($_GET['incorrect']) && $_GET['incorrect'] == 1) { echo 'style="color: red"';} ?> >Current Password</label>
                  </div>
                  <div class="group">
                      <input id="password" type="password" name="newPass"><span class="highlight"></span><span class="bar"></span>
-                     <label>New Password</label>
+                     <label class="text">New Password</label>
                  </div>
                  <div class="group">
                      <input id="passConf" type="password" name="newPassConf"><span class="highlight"></span><span class="bar"></span>
-                     <label>Confirm Password</label>
+                     <label class="text">Confirm Password</label>
                  </div>
                  <button type="button" onclick="checkPass();" class="button buttonBlue">Change Password
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>

@@ -51,7 +51,7 @@ input:focus { outline: none; }
 
 /* Label */
 
-label {
+.text {
 	color: #999;
 	font-size: 18px;
 	font-weight: normal;
@@ -62,10 +62,17 @@ label {
 	transition: all 0.2s ease;
 }
 
+.mdl-switch.is-checked .mdl-switch__thumb {
+	background: #4a89dc;
+}
+
+.mdl-switch.is-checked .mdl-switch__track {
+	background: rgba(74, 137, 220, .5);
+}
 
 /* active */
 
-input:focus ~ label, input.used ~ label {
+input:focus ~ .text, input.used ~ .text {
 	top: -20px;
   transform: scale(.75); left: -2px;
 	/* font-size: 14px; */

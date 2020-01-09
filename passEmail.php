@@ -74,15 +74,15 @@ emailPass($_POST['username']);
              <form id="passForm" action="./requests/passEmail.php" method="post">
                  <div class="group">
                      <input type="text" name="code"><span class="highlight"></span><span class="bar"></span>
-                     <label>Code</label>
+                     <label class="text">Code</label>
                  </div>
                  <div class="group">
                      <input id="password" type="password" name="newPass"><span class="highlight"></span><span class="bar"></span>
-                     <label>New Password</label>
+                     <label class="text">New Password</label>
                  </div>
                  <div class="group">
                      <input id="passConf" type="password" name="newPassConf"><span class="highlight"></span><span class="bar"></span>
-                     <label>Confirm Password</label>
+                     <label class="text">Confirm Password</label>
                  </div>
                  <button type="submit" class="button buttonBlue">Change Password
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>

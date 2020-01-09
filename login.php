@@ -60,11 +60,11 @@
              <form action="./requests/login.php" method="post">
                  <div class="group">
                      <input type="text" name="username"><span class="highlight"></span><span class="bar"></span>
-                     <label>Username</label>
+                     <label class="text">Username</label>
                  </div>
                  <div class="group">
                      <input type="password" name="password"><span class="highlight"></span><span class="bar"></span>
-                     <label>Password</label>
+                     <label class="text">Password</label>
                  </div>
                  <button type="submit" class="button buttonBlue">Login
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>

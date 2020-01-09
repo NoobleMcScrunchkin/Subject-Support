@@ -49,7 +49,7 @@
              <form action="./passEmail.php" method="post">
                  <div class="group">
                      <input type="text" name="username"><span class="highlight"></span><span class="bar"></span>
-                     <label>Username</label>
+                     <label class="text">Username</label>
                  </div>
                  <button type="submit" class="button buttonBlue">Send Email
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>

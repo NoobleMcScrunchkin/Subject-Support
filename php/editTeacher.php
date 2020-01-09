@@ -1,18 +1,23 @@
 <?php
-function editTeacher($id, $fname, $sname, $username, $email) {
+function editTeacher($id, $fname, $sname, $username, $email, $priv) {
     global $db;
+    if ($priv == "on") {
+        $priv = 1;
+    } else {
+        $priv = 0;
+    }
 
     if ($id == "NaN") {
-        $addStudent = $db->prepare("INSERT INTO accounts(`First Name`, `Last Name`, `Username`, `Password`, `Email`, `Privileged`) VALUES (?, ?, ?, ?, ?, 0)");
+        $addTeacher = $db->prepare("INSERT INTO accounts(`First Name`, `Last Name`, `Username`, `Password`, `Email`, `Privileged`) VALUES (?, ?, ?, ?, ?, ?)");
         $password = password_hash("Password01", PASSWORD_BCRYPT);
-        $addStudent->bind_param("sssss", $fname, $sname, $username, $password, $email);
-        $addStudent->execute();
-        $addStudent->close();
+        $addTeacher->bind_param("sssssi", $fname, $sname, $username, $password, $email, $priv);
+        $addTeacher->execute();
+        $addTeacher->close();
     } else {
-        $updateStudent = $db->prepare("UPDATE `accounts` SET `First Name`=?, `Last Name`=?, `Username`=?, `Email`=? WHERE `ID`=?");
-        $updateStudent->bind_param("ssssi", $fname, $sname, $username, $email, $id);
-        $updateStudent->execute();
-        $updateStudent->close();
+        $updateTeacher = $db->prepare("UPDATE `accounts` SET `First Name`=?, `Last Name`=?, `Username`=?, `Email`=?, `Privileged`=? WHERE `ID`=?");
+        $updateTeacher->bind_param("ssssii", $fname, $sname, $username, $email, $priv, $id);
+        $updateTeacher->execute();
+        $updateTeacher->close();
     }
 
     return true;

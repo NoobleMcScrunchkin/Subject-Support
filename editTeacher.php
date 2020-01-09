@@ -10,9 +10,9 @@ if (!$user['priv']) {
 }
 
 if ($_POST["ID"] != "NaN") {
-    $finduser = $db->prepare("SELECT `First Name`, `Last Name`, `Username`, `Email` FROM accounts WHERE ID=?");
+    $finduser = $db->prepare("SELECT `First Name`, `Last Name`, `Username`, `Email`, `Privileged` FROM accounts WHERE ID=?");
     $finduser->bind_param("i", $_POST["ID"]);
-    $finduser->bind_result($fname, $sname, $username, $email);
+    $finduser->bind_result($fname, $sname, $username, $email, $priv);
     $finduser->execute();
     $finduser->fetch();
     $finduser->close();
@@ -22,13 +22,13 @@ if ($_POST["ID"] != "NaN") {
     <head>
         <meta charset="utf-8">
         <title>Subject Support</title>
-        <link rel="stylesheet" href="login.css"></link>
         <link href="./index.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="./matDesign/material.min.css">
-        <script src="./matDesign/material.min.js"></script>
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+        <script defer src="./matDesign/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="login.css"></link>
         <script>
             $(window, document, undefined).ready(function() {
 
@@ -85,20 +85,29 @@ if ($_POST["ID"] != "NaN") {
                  <input type="hidden" name="ID" value="<?=$_POST['ID']?>">
                  <div class="group">
                      <input type="text" name="fname" value="<?php if ($_POST['ID'] != "NaN") { echo $fname; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>First Name</label>
+                     <label class="text">First Name</label>
                  </div>
                  <div class="group">
                      <input type="text" name="sname" value="<?php if ($_POST['ID'] != "NaN") { echo $sname; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>Last Name</label>
+                     <label class="text">Last Name</label>
                  </div>
                  <div class="group">
                      <input type="text" name="username" value="<?php if ($_POST['ID'] != "NaN") { echo $username; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>Username</label>
+                     <label class="text">Username</label>
                  </div>
                  <div class="group">
                      <input type="text" name="email" value="<?php if ($_POST['ID'] != "NaN") { echo $email; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>Email</label>
+                     <label class="text">Email</label>
                  </div>
+                 <?php if ($_SESSION["accountID"] != $_POST["ID"]) { ?>
+                 <div class="group">
+                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="priv">
+                        <input name="priv" type="checkbox" id="priv" class="mdl-switch__input" <?php if ($priv) { echo "checked";} ?>>
+                        <span class="mdl-switch__label" style="color: #636363">Privileged</span>
+                    </label>
+                </div>
+                <?php
+                } ?>
                  <button type="submit" class="button buttonBlue">Submit
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                  </button>

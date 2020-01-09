@@ -1,4 +1,4 @@
-<?php
+ class="text"<?php
 require ("php/login.php");
 validate_login();
 
@@ -80,23 +80,23 @@ if ($_POST["ID"] != "NaN") {
                  <input type="hidden" name="ID" value="<?=$_POST['ID']?>">
                  <div class="group">
                      <input type="text" name="fname" value="<?php if ($_POST['ID'] != "NaN") { echo $fname; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>First Name</label>
+                     <label class="text">First Name</label>
                  </div>
                  <div class="group">
                      <input type="text" name="sname" value="<?php if ($_POST['ID'] != "NaN") { echo $sname; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>Last Name</label>
+                     <label class="text">Last Name</label>
                  </div>
                  <div class="group">
                      <input type="text" name="subject" value="<?php if ($_POST['ID'] != "NaN") { echo $subject; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>Subject</label>
+                     <label class="text">Subject</label>
                  </div>
                  <div class="group">
                      <input type="number" name="year" value="<?php if ($_POST['ID'] != "NaN") { echo $year; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>Year</label>
+                     <label class="text">Year</label>
                  </div>
                  <div class="group">
                      <input type="text" name="house" value="<?php if ($_POST['ID'] != "NaN") { echo $house; } ?>"><span class="highlight"></span><span class="bar"></span>
-                     <label>House</label>
+                     <label class="text">House</label>
                  </div>
                  <button type="submit" class="button buttonBlue">Submit
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
