@@ -41,7 +41,7 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
                      <thead>
                          <tr>
-                             <th class="mdl-data-table__cell--non-numeric">Name</th>
+                             <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending">Name</th>
                              <th class="mdl-data-table__cell--non-numeric">Subject</th>
                              <th class="mdl-data-table__cell--non-numeric">Tutor Group</th>
                              <th class="mdl-data-table__cell--non-numeric">Completion</th>

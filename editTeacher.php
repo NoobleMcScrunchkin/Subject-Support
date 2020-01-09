@@ -99,10 +99,10 @@ if ($_POST["ID"] != "NaN") {
                      <input type="text" name="email" value="<?php if ($_POST['ID'] != "NaN") { echo $email; } ?>"><span class="highlight"></span><span class="bar"></span>
                      <label class="text">Email</label>
                  </div>
-                 <?php if ($_SESSION["accountID"] != $_POST["ID"]) { ?>
+                 <?php if ($_SESSION["accountID"] != $_POST["ID"] || $_POST["ID"] == "NaN") { ?>
                  <div class="group">
                      <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="priv">
-                        <input name="priv" type="checkbox" id="priv" class="mdl-switch__input" <?php if ($priv) { echo "checked";} ?>>
+                        <input name="priv" type="checkbox" id="priv" class="mdl-switch__input" <?php if ($_POST["ID"] != "NaN" && $priv) { echo "checked";} ?>>
                         <span class="mdl-switch__label" style="color: #636363">Privileged</span>
                     </label>
                 </div>

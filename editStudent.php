@@ -1,4 +1,4 @@
- class="text"<?php
+<?php
 require ("php/login.php");
 validate_login();
 

@@ -13,6 +13,11 @@ $user = fetch_account($_SESSION['accountID']);
         <script src="./matDesign/material.min.js"></script>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script>
+        window.onload = function() {
+            <?php if (isset($_GET["invalid"])) {echo "alert('Required fields were not filled, no changes have been made.')";} ?>
+        }
+        </script>
     </head>
     <body>
          <div class="layout mdl-layout mdl-js-layout">

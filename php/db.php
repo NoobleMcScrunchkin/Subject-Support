@@ -4,7 +4,7 @@ $db = mysqli_connect("localhost", "root", "", "subject_support");
 function fetch_students() {
     global $db;
 
-    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Surname`, `Subject`, `Year`, `House` FROM students");
+    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Surname`, `Subject`, `Year`, `House` FROM students ORDER BY `Surname` ASC, `First Name` ASC");
     $fetchusers->execute();
 
     $res = array();
@@ -29,7 +29,7 @@ function fetch_students() {
 function fetch_accounts() {
     global $db;
 
-    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Last Name`, `Username`, `Email`, `Privileged` FROM accounts");
+    $fetchusers = $db->prepare("SELECT ID, `First Name`, `Last Name`, `Username`, `Email`, `Privileged` FROM accounts  ORDER BY `Last Name` ASC, `First Name` ASC");
     $fetchusers->execute();
 
     $res = array();
