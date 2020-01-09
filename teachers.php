@@ -49,7 +49,7 @@ $user = fetch_account($_SESSION['accountID']);
                  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
                      <thead>
                          <tr>
-                             <th class="mdl-data-table__cell--non-numeric">Name</th>
+                             <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending">Name</th>
                              <th class="mdl-data-table__cell--non-numeric">Username</th>
                              <th class="mdl-data-table__cell--non-numeric">Email</th>
                              <th class="mdl-data-table__cell--non-numeric">Remove</th>
