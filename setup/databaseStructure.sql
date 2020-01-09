@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 07, 2020 at 11:11 AM
+-- Generation Time: Jan 09, 2020 at 11:38 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -38,14 +38,14 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `Email` text NOT NULL,
   `Privileged` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`ID`, `Username`, `Password`, `First Name`, `Last Name`, `Email`, `Privileged`) VALUES
-(0, 'Admin', '$2y$10$069P.Qc9B7G6oLxuvszN0ODHeyWWKWZOP45KWJ7qvdRcl7sN85m0.', 'Administrator', 'Admin', '', 1);
+(0, 'Admin', '$2y$10$Pwln9ELDwT4.zhWWdqJhkOJT0oKLKRGNv3Bbk0rolk7DV0Y2qL91G', 'Admin', 'Admin', 'email@elizabethcollege.gg', 1);
 
 -- --------------------------------------------------------
 
@@ -59,8 +59,9 @@ CREATE TABLE IF NOT EXISTS `completed` (
   `StudentID` int(11) NOT NULL,
   `Week` date NOT NULL,
   `Period` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID`),
+  KEY `StudentID` (`StudentID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -71,25 +72,11 @@ CREATE TABLE IF NOT EXISTS `completed` (
 DROP TABLE IF EXISTS `forgotpass`;
 CREATE TABLE IF NOT EXISTS `forgotpass` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `AccountID` text NOT NULL,
+  `AccountID` int(11) NOT NULL,
   `Code` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `register`
---
-
-DROP TABLE IF EXISTS `register`;
-CREATE TABLE IF NOT EXISTS `register` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Week` date NOT NULL,
-  `StudentID` int(11) NOT NULL,
-  `Completed` tinyint(1) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID`),
+  KEY `AccountID` (`AccountID`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -106,7 +93,32 @@ CREATE TABLE IF NOT EXISTS `students` (
   `Year` int(11) NOT NULL,
   `House` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `completed`
+--
+ALTER TABLE `completed`
+  ADD CONSTRAINT `completed_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `students` (`ID`);
+
+--
+-- Constraints for table `forgotpass`
+--
+ALTER TABLE `forgotpass`
+  ADD CONSTRAINT `forgotpass_ibfk_1` FOREIGN KEY (`AccountID`) REFERENCES `accounts` (`ID`);
+
+DELIMITER $$
+--
+-- Events
+--
+DROP EVENT `Truncate forgotpass`$$
+CREATE DEFINER=`root`@`localhost` EVENT `Truncate forgotpass` ON SCHEDULE EVERY 1 DAY STARTS '2020-01-10 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Remove codes at end of day' DO TRUNCATE forgotpass$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
