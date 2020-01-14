@@ -76,12 +76,11 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='<?php if (!$completed[1] || !$completed[2]) { ?> complete_period(<?=$user["id"]?>, 1, false, true); complete_period(<?=$user["id"]?>, 2, false); <?php } else { ?> complete_period(<?=$user["id"]?>, 1, true, true); complete_period(<?=$user["id"]?>, 2, true); <?php } ?>'>
                                      Mark all as <?=$completed[1] && $completed[2] ? "To Do" : "Done";?>
                                  </button>
-                                 <button id="demo-menu-lower-right"
-                                        class="mdl-button mdl-js-button mdl-button--icon">
+                                 <button id="<?=$user['id']?>Button" class="mdl-button mdl-js-button mdl-button--icon">
                                   <i class="material-icons">more_vert</i>
                                 </button>
 
-                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="demo-menu-lower-right">
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="<?=$user['id']?>Button">
                                   <li class="mdl-menu__item" onclick='complete_period(<?=$user["id"]?>, 1, <?=$completed[1] ? "true" : "false"?>);'>
                                       Mark P1 as <?=$completed[1] ? "To Do" : "Done";?>
                                   </li>
