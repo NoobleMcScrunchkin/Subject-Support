@@ -73,7 +73,7 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
                                  <span class="roboto" style="float: left;"><?=$completedStr?></span>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1, <?=$completed[1] ? "true" : "false"?>, true);complete_period(<?=$user["id"]?>, 2, <?=$completed[2] ? "true" : "false"?>);'>
+                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='<?php if (!$completed[1] || !$completed[2]) { ?> complete_period(<?=$user["id"]?>, 1, false, true); complete_period(<?=$user["id"]?>, 2, false); <?php } else { ?> complete_period(<?=$user["id"]?>, 1, true, true); complete_period(<?=$user["id"]?>, 2, true); <?php } ?>'>
                                      Mark all as <?=$completed[1] && $completed[2] ? "To Do" : "Done";?>
                                  </button>
                                  <button id="demo-menu-lower-right"
