@@ -18,10 +18,10 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
         <script src="./js/index.js"></script>
     </head>
     <body>
-         <div class="layout mdl-layout mdl-js-layout">
+         <div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
              <header class="mdl-layout__header mdl-layout__header--transparent">
                  <div class="mdl-layout__header-row">
-                     <span class="mdl-layout-title">Elizabeth College Subject Support</span>
+                     <span class="mdl-layout-title">EC Subject Support</span>
                      <div class="mdl-layout-spacer"></div>
                      <nav class="mdl-navigation">
                          <a class="mdl-navigation__link" href="./">Home</a>
@@ -55,16 +55,16 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                             $completed = fetch_completed($user["id"], $week_start);
                             $completedStr = "";
                             if($completed[1] && !$completed[2]) {
-                                $completedStr = "P1 Completed";
+                                $completedStr = "P1 Done";
                             }
                             elseif(!$completed[1] && $completed[2]) {
-                                $completedStr = "P2 Completed";
+                                $completedStr = "P2 Done";
                             }
                             elseif(!$completed[1] && !$completed[2]) {
-                                $completedStr = "No Periods Completed";
+                                $completedStr = "Incompleted";
                             }
                             else {
-                                $completedStr = "All Periods Completed";
+                                $completedStr = "Completed";
                             }
                             ?>
                             <tr>
@@ -73,15 +73,22 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
                                  <span class="roboto" style="float: left;"><?=$completedStr?></span>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1, <?=$completed[1] ? "true" : "false"?>);'>
-                                     Mark P1 as <?=$completed[1] ? "To Do" : "Done";?>
-                                 </button>
-                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 2, <?=$completed[2] ? "true" : "false"?>);'>
-                                     Mark P2 as <?=$completed[2] ? "To Do" : "Done";?>
-                                 </button>
                                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick='complete_period(<?=$user["id"]?>, 1, <?=$completed[1] ? "true" : "false"?>, true);complete_period(<?=$user["id"]?>, 2, <?=$completed[2] ? "true" : "false"?>);'>
                                      Mark all as <?=$completed[1] && $completed[2] ? "To Do" : "Done";?>
                                  </button>
+                                 <button id="demo-menu-lower-right"
+                                        class="mdl-button mdl-js-button mdl-button--icon">
+                                  <i class="material-icons">more_vert</i>
+                                </button>
+
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="demo-menu-lower-right">
+                                  <li class="mdl-menu__item" onclick='complete_period(<?=$user["id"]?>, 1, <?=$completed[1] ? "true" : "false"?>);'>
+                                      Mark P1 as <?=$completed[1] ? "To Do" : "Done";?>
+                                  </li>
+                                  <li class="mdl-menu__item" onclick='complete_period(<?=$user["id"]?>, 2, <?=$completed[2] ? "true" : "false"?>);'>
+                                      Mark P2 as <?=$completed[2] ? "To Do" : "Done";?>
+                                  </li>
+                                </ul>
                              </td>
                             <?php
                         }

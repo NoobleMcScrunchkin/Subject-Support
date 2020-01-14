@@ -20,10 +20,10 @@ $user = fetch_account($_SESSION['accountID']);
         </script>
     </head>
     <body>
-         <div class="layout mdl-layout mdl-js-layout">
-             <header class="mdl-layout__header mdl-layout__header--transparent">
-                 <div class="mdl-layout__header-row">
-                     <span class="mdl-layout-title">Elizabeth College Subject Support</span>
+        <div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header mdl-layout__header--transparent">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">EC Subject Support</span>
                      <div class="mdl-layout-spacer"></div>
                      <nav class="mdl-navigation">
                          <a class="mdl-navigation__link" href="./">Home</a>
