@@ -3,9 +3,6 @@ require("./php/login.php");
 validate_login();
 
 $user = fetch_account($_SESSION['accountID']);
-$day = date('w') - 1;
-$week_start = date('Y-m-d', strtotime('-'.$day.' days'));
-// mysqli_query($db, "INSERT INTO `register` (`Week`, `StudentID`, `Completed`) VALUES ('".$week_start."', '0', '1')");
  ?>
 <html>
     <head>
