@@ -107,7 +107,7 @@ if ($_POST["ID"] != "NaN") {
                     </label>
                 </div>
                 <?php
-                } ?>
+            } else if($priv) { echo "<input name='priv' type='hidden' value='on'>";}?>
                  <button type="submit" class="button buttonBlue">Submit
                      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                  </button>

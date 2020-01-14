@@ -3,6 +3,11 @@ require("./php/login.php");
 validate_login();
 
 $user = fetch_account($_SESSION['accountID']);
+
+if (!$user['priv']) {
+    header("HTTP/1.0 403 Forbidden");
+    die();
+}
  ?>
 <html>
     <head>
