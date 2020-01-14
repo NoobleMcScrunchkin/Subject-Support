@@ -61,10 +61,10 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                                 $completedStr = "P2 Done";
                             }
                             elseif(!$completed[1] && !$completed[2]) {
-                                $completedStr = "Incompleted";
+                                $completedStr = "Incomplete";
                             }
                             else {
-                                $completedStr = "Completed";
+                                $completedStr = "Complete";
                             }
                             ?>
                             <tr>
