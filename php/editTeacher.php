@@ -9,6 +9,34 @@ function editTeacher($id, $fname, $sname, $username, $email, $priv) {
         $priv = 0;
     }
 
+    $fetchusers = $db->prepare("SELECT `ID` FROM accounts WHERE `Username`=?");
+    $fetchusers->bind_param("s", $username);
+    $fetchusers->execute();
+    $fetchusers->store_result();
+
+    if ($fetchusers->num_rows > 0)
+    {
+        $fetchusers->close();
+        $num = 1;
+        $done = false;
+        while (!$done) {
+            $var = $username.(string)$num;
+            $fetchusers = $db->prepare("SELECT `ID` FROM accounts WHERE `Username`=?");
+            $fetchusers->bind_param("s", $var);
+            $fetchusers->execute();
+            $fetchusers->store_result();
+            if ($fetchusers->num_rows == 0) {
+                $done = true;
+            } else {
+                $fetchusers->close();
+                $num = (int)$num + 1;
+            }
+        }
+        $username = $username.(string)$num;
+    }
+    $fetchusers->close();
+
+
     if (!isEmptyOrSpaces($fname) && !isEmptyOrSpaces($sname) && !isEmptyOrSpaces($username) && !isEmptyOrSpaces($email)) {
         if ($id == "NaN") {
             $addTeacher = $db->prepare("INSERT INTO accounts(`First Name`, `Last Name`, `Username`, `Password`, `Email`, `Privileged`) VALUES (?, ?, ?, ?, ?, ?)");
