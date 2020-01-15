@@ -9,8 +9,8 @@ function editTeacher($id, $fname, $sname, $username, $email, $priv) {
         $priv = 0;
     }
 
-    $fetchusers = $db->prepare("SELECT `ID` FROM accounts WHERE `Username`=?");
-    $fetchusers->bind_param("s", $username);
+    $fetchusers = $db->prepare("SELECT `ID` FROM accounts WHERE `Username`=? AND `ID`!=?");
+    $fetchusers->bind_param("si", $username, $id);
     $fetchusers->execute();
     $fetchusers->store_result();
 
@@ -21,8 +21,8 @@ function editTeacher($id, $fname, $sname, $username, $email, $priv) {
         $done = false;
         while (!$done) {
             $var = $username.(string)$num;
-            $fetchusers = $db->prepare("SELECT `ID` FROM accounts WHERE `Username`=?");
-            $fetchusers->bind_param("s", $var);
+            $fetchusers = $db->prepare("SELECT `ID` FROM accounts WHERE `Username`=? AND `ID`!=?");
+            $fetchusers->bind_param("si", $var, $id);
             $fetchusers->execute();
             $fetchusers->store_result();
             if ($fetchusers->num_rows == 0) {
