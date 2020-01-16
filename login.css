@@ -1,7 +1,7 @@
 * { box-sizing:border-box; }
 
 body {
-	overflow: hidden;
+	/* overflow: hidden; */
 	font-family: Helvetica;
 	/* background: url('./res/background.jpg') center / cover; */
 	background: #ccc;

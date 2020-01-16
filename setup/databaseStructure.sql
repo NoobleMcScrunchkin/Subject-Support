@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `First Name` text NOT NULL,
-  `Surname` text NOT NULL,
+  `Last Name` text NOT NULL,
   `Subject` text NOT NULL,
   `Year` int(11) NOT NULL,
   `House` text NOT NULL,
