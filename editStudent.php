@@ -10,9 +10,9 @@ if (!$user['priv']) {
 }
 
 if ($_POST["ID"] != "NaN") {
-    $finduser = $db->prepare("SELECT `First Name`, `Last Name`, `Subject`, `Year`, `House` FROM students WHERE ID=?");
+    $finduser = $db->prepare("SELECT `First Name`, `Last Name`, `Subject`, `Year`, `House`, `colNum` FROM students WHERE ID=?");
     $finduser->bind_param("i", $_POST["ID"]);
-    $finduser->bind_result($fname, $sname, $subject, $year, $house);
+    $finduser->bind_result($fname, $sname, $subject, $year, $house, $colNum);
     $finduser->execute();
     $finduser->fetch();
     $finduser->close();
@@ -85,6 +85,10 @@ if ($_POST["ID"] != "NaN") {
                  <div class="group">
                      <input type="text" name="sname" value="<?php if ($_POST['ID'] != "NaN") { echo $sname; } ?>"><span class="highlight"></span><span class="bar"></span>
                      <label class="text">Last Name</label>
+                 </div>
+                 <div class="group">
+                     <input type="number" name="colNum" value="<?php if ($_POST['ID'] != "NaN") { echo $colNum; } ?>"><span class="highlight"></span><span class="bar"></span>
+                     <label class="text">College Number</label>
                  </div>
                  <div class="group">
                      <input type="text" name="subject" value="<?php if ($_POST['ID'] != "NaN") { echo $subject; } ?>"><span class="highlight"></span><span class="bar"></span>

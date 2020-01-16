@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `Subject` text NOT NULL,
   `Year` int(11) NOT NULL,
   `House` text NOT NULL,
+  `colNum` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 

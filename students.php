@@ -67,7 +67,7 @@ if (!$user['priv']) {
                         foreach($users as $user) {
                             ?>
                             <tr>
-                            <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"];?></td>
+                            <td class="mdl-data-table__cell--non-numeric"><?=$user["sname"] . ", " . $user["fname"] . " - " . $user["colNum"];?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["subject"];?></td>
                             <td class="mdl-data-table__cell--non-numeric"><?=$user["year"] . " " . $user["house"];?></td>
                             <td class="mdl-data-table__cell--non=numeric">
