@@ -7,6 +7,10 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
     die();
 }
 
+if (!fetch_account($_SESSION['accountID'])["priv"]) {
+    header('HTTP/1.0 403 Forbidden');
+}
+
 $studentIdStr = $_POST["studentId"];
 $periodStr = $_POST["period"];
 $todoStr = $_POST["todo"];

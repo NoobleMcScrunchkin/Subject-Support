@@ -16,6 +16,11 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="./js/index.js"></script>
+        <script>
+        window.onload = function() {
+            <?php if (isset($_GET["email"])) {echo "alert('Emails have been sent')";} ?>
+        }
+        </script>
     </head>
     <body>
          <div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -38,6 +43,14 @@ $week_start = date('Y-m-d', strtotime('-'.$day.' days'));
                  </div>
              </header>
              <main class="mdl-layout__content">
+                 <?php
+                 if ($user['priv']) { ?>
+                     <form style="display: inline-block; float: right; margin-right: 8px;" action="./requests/emailIncomplete.php" method="post">
+                         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                             Email Incomplete
+                         </button>
+                    </form>
+                <?php } ?>
                  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%">
                      <thead>
                          <tr>

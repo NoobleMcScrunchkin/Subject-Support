@@ -10,7 +10,7 @@ if (!$user['priv']) {
 }
 
 if ($_POST["ID"] != "NaN") {
-    $finduser = $db->prepare("SELECT `First Name`, `Surname`, `Subject`, `Year`, `House` FROM students WHERE ID=?");
+    $finduser = $db->prepare("SELECT `First Name`, `Last Name`, `Subject`, `Year`, `House` FROM students WHERE ID=?");
     $finduser->bind_param("i", $_POST["ID"]);
     $finduser->bind_result($fname, $sname, $subject, $year, $house);
     $finduser->execute();
