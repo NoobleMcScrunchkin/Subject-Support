@@ -10,7 +10,7 @@ function complete_period(studentid, period, todo, noreload) {
         if(noreload == true) {
             return;
         }
-        document.location.reload(true);
+        window.location = window.location.href.split("?")[0];
     }
 
     req.send(data);
